@@ -22,19 +22,33 @@ is 3
 sunny 2
 day 1
 ```
+以下为python代码：
+```
+# -*- coding:utf-8 -*-
+
+import os
+from collections import Counter
+import re
+
+sumsdata=[]
+for fname in os.listdir(os.getcwd()):
+    if os.path.isfile(fname) and fname.endswith('.txt'):
+        with open(fname,'r') as fp:
+            data=fp.read()
+            fp.close()
+        sumsdata+=re.split(" |\n|\.",data)
+cnt=Counter()
+
+for word in sumsdata:
+    cnt[word]+=1
+cnt=dict(cnt)
+cnt=dict(sorted(cnt.items(),key=lambda d:d[1],reverse=True))
+
+for key,value in cnt.items():
+    print(key+" "+str(value))
+```
 
 ## 提交方式
 
 请您Fork本项目，然后将代码Clone到本地，进行开发，将您的代码Push到您Fork了的项目里  
 当您完成作业后，发一个Pull Request到本项目里
-
-# 自学资料
-
-- Git
-  - 自学资料：
-    - [https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
-  - 自学任务：熟悉常见Git命令
-- Github
-  - 自学资料：
-    - http://www.yangzhiping.com/tech/github.html
-  - 自学任务：熟悉Github使用
